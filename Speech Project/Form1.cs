@@ -11,6 +11,7 @@ using System.Speech.Recognition;
 using System.Speech.Synthesis;
 using System.Diagnostics;
 using System.Collections;
+using System.Threading;
 
 namespace Speech_Project
 {
@@ -29,21 +30,23 @@ namespace Speech_Project
             PromptBuilder pBuilder = new PromptBuilder();
             SpeechRecognitionEngine sRecognize = new SpeechRecognitionEngine();
 
+
             Choices sList = new Choices();
-            sList.Add(new string[] { "Jarvis Hello" });
-            sList.Add(new string[] { "Jarvis Chrome" });
-            sList.Add(new string[] { "Jarvis Facebook" });
-            sList.Add(new string[] { "Jarvis Launch Go" });
-            sList.Add(new string[] { "Jarvis Launch Rim World" });
-            sList.Add(new string[] { "Jarvis Launch Rust" });
-            sList.Add(new string[] { "Jarvis Launch Sins" });
-            sList.Add(new string[] { "Jarvis Launch K S P" });
-            sList.Add(new string[] { "Jarvis Launch Skype" });
-            sList.Add(new string[] { "Jarvis Launch Unity" });
-            sList.Add(new string[] { "Jarvis Wake Up" });
-            sList.Add(new string[] { "Jarvis Go To Sleep" });
-            sList.Add(new string[] { "Jarvis Close Applications" });
-            sList.Add(new string[] { "Jarvis Exit" });
+            sList.Add(new string[] { "Nisp Hello" });
+            sList.Add(new string[] { "Nisp Launch Chrome" });
+            sList.Add(new string[] { "Nisp Facebook" });
+            sList.Add(new string[] { "Nisp Launch Go" });
+            sList.Add(new string[] { "Nisp Launch Rim World" });
+            sList.Add(new string[] { "Nisp Launch Rust" });
+            sList.Add(new string[] { "Nisp Launch Sins" });
+            sList.Add(new string[] { "Nisp Launch K S P" });
+            sList.Add(new string[] { "Nisp Launch Skype" });
+            sList.Add(new string[] { "Nisp Launch Unity" });
+            sList.Add(new string[] { "Nisp Wake Up" });
+            sList.Add(new string[] { "That will be all" });
+            sList.Add(new string[] { "Nisp Close Applications" });
+            sList.Add(new string[] { "Nisp Tell A Joke" });
+            sList.Add(new string[] { "Nisp Exit" });
             Grammar gr = new Grammar(new GrammarBuilder(sList));
             try
             {
@@ -62,64 +65,108 @@ namespace Speech_Project
         }
         private void sRecognize_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            if (e.Result.Text == "Jarvis Wake Up")
+
+            // Initialize a new instance of the SpeechSynthesizer.
+            SpeechSynthesizer synth = new SpeechSynthesizer();
+
+            // Configure the audio output. 
+            synth.SetOutputToDefaultAudioDevice();
+
+            if (e.Result.Text == "Nisp Wake Up")
             {
                 Awake = true;
+                // Speak a string.
+                synth.Speak("Welcome Back Kmannder");
             }
 
-            if (e.Result.Text == "Jarvis Go To Sleep")
+            if (e.Result.Text == "That will be all for now")
             {
+                // Speak a string.
+                synth.Speak("I'll be here Sir");
                 Awake = false;
             }
 
             if (Awake == true)
             {
-                if (e.Result.Text == "Jarvis Hello")
+                if (e.Result.Text == "Nisp Hello")
                 {
-                    MessageBox.Show("Hello, I am Jarvis version 1.0");
+                    // Speak a string.
+                    synth.Speak("Hello, I am Nisp version 1.0");
                 }
-                if (e.Result.Text == "Jarvis Chrome")
+                if (e.Result.Text == "Nisp Launch Chrome")
                 {
+
+                    // Speak a string.
+                    synth.Speak("Launching Google Chrome");
                     LaunchChrome();
+ //                   int milliseconds = 2000;
+   //                 Thread.Sleep(milliseconds);
+     //               SendKeys.Send("Bing");
+       //             SendKeys.Send("{ENTER}");
                 }
-                if (e.Result.Text == "Jarvis Facebook")
+                if (e.Result.Text == "Nisp Facebook")
                 {
                     LaunchFacebook();
+                    // Speak a string.
+                    synth.Speak("Opening your Facebook");
                 }
-                if (e.Result.Text == "Jarvis Launch Go")
+                if (e.Result.Text == "Nisp Launch Go")
                 {
+                    // Speak a string.
+                    synth.Speak("Launching Counter Strike: Global Offensive");
                     LaunchCSGO();
                 }
-                if (e.Result.Text == "Jarvis Launch Rim World")
+/*needs some work*/                if (e.Result.Text == "Nisp Launch Rim World")
                 {
+                    // Speak a string.
+                    synth.Speak("Launching Rim World");
                     LaunchRim();
                 }
-                if (e.Result.Text == "Jarvis Launch Rust")
+                if (e.Result.Text == "Nisp Launch Rust")
                 {
+                    // Speak a string.
+                    synth.Speak("Launching Rust");
                     LaunchRust();
                 }
-                if (e.Result.Text == "Jarvis Launch Sins")
+                if (e.Result.Text == "Nisp Launch Sins")
                 {
+                    // Speak a string.
+                    synth.Speak("Sins Of Solar Empire");
                     LaunchSins();
                 }
-                if (e.Result.Text == "Jarvis Launch K S P")
+                if (e.Result.Text == "Nisp Launch K S P")
                 {
                     LaunchKSP();
+                    // Speak a string.
+                    synth.Speak("Launching Kerbal Space Program");
                 }
-                if (e.Result.Text == "Jarvis Launch Skype")
+                if (e.Result.Text == "Nisp Launch Skype")
                 {
                     LaunchSkype();
+                    // Speak a string.
+                    synth.Speak("Launching Skype");
                 }
-                if (e.Result.Text == "Jarvis Launch Unity")
+                if (e.Result.Text == "Nisp Launch Unity")
                 {
                     LaunchUnity();
+                    // Speak a string.
+                    synth.Speak("Launching Unity");
                 }
-                if (e.Result.Text == "Jarvis Close Applications")
+/*needs some work*/                if (e.Result.Text == "Nisp Close Applications")
                 {
                     CloseApplication();
+                    // Speak a string.
+                    synth.Speak("Closing Application");
                 }
-                if (e.Result.Text == "Jarvis Exit")
+                if (e.Result.Text == "Nisp Tell A Joke")
                 {
+                    // Speak a string.
+                    synth.Speak("Your Face, Ha Ha Ha Ha Ha Ha Ha Ha Ha ");
+                }
+                if (e.Result.Text == "Nisp Exit")
+                {
+                    // Speak a string.
+                    synth.Speak("Nisp shutting down, Good Bye sir");
                     Environment.Exit(0);
                 }
             }

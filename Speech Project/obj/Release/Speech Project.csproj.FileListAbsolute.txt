@@ -7,3 +7,12 @@ C:\Users\Kyle\Desktop\Speech Project\Speech Project\Speech Project\obj\Release\S
 C:\Users\Kyle\Desktop\Speech Project\Speech Project\Speech Project\obj\Release\Speech Project.exe
 C:\Users\Kyle\Desktop\Speech Project\Speech Project\Speech Project\obj\Release\Speech Project.pdb
 C:\Users\Kyle\Desktop\Speech Project\Speech Project\Speech Project\obj\Release\Speech Project.csprojResolveAssemblyReference.cache
+C:\Users\kennedkj\Desktop\SpeechRec\Speech Project\bin\Release\Speech Project.exe.config
+C:\Users\kennedkj\Desktop\SpeechRec\Speech Project\obj\Release\Speech Project.exe
+C:\Users\kennedkj\Desktop\SpeechRec\Speech Project\obj\Release\Speech Project.pdb
+C:\Users\kennedkj\Desktop\SpeechRec\Speech Project\bin\Release\Speech Project.exe
+C:\Users\kennedkj\Desktop\SpeechRec\Speech Project\bin\Release\Speech Project.pdb
+C:\Users\kennedkj\Desktop\SpeechRec\Speech Project\obj\Release\Speech Project.csprojResolveAssemblyReference.cache
+C:\Users\kennedkj\Desktop\SpeechRec\Speech Project\obj\Release\Speech_Project.Form1.resources
+C:\Users\kennedkj\Desktop\SpeechRec\Speech Project\obj\Release\Speech_Project.Properties.Resources.resources
+C:\Users\kennedkj\Desktop\SpeechRec\Speech Project\obj\Release\Speech Project.csproj.GenerateResource.Cache
