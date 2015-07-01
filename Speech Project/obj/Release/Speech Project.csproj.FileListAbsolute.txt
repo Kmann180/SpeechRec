@@ -1,0 +1,9 @@
+C:\Users\Kyle\Desktop\Speech Project\Speech Project\Speech Project\bin\Release\Speech Project.exe.config
+C:\Users\Kyle\Desktop\Speech Project\Speech Project\Speech Project\bin\Release\Speech Project.exe
+C:\Users\Kyle\Desktop\Speech Project\Speech Project\Speech Project\bin\Release\Speech Project.pdb
+C:\Users\Kyle\Desktop\Speech Project\Speech Project\Speech Project\obj\Release\Speech_Project.Form1.resources
+C:\Users\Kyle\Desktop\Speech Project\Speech Project\Speech Project\obj\Release\Speech_Project.Properties.Resources.resources
+C:\Users\Kyle\Desktop\Speech Project\Speech Project\Speech Project\obj\Release\Speech Project.csproj.GenerateResource.Cache
+C:\Users\Kyle\Desktop\Speech Project\Speech Project\Speech Project\obj\Release\Speech Project.exe
+C:\Users\Kyle\Desktop\Speech Project\Speech Project\Speech Project\obj\Release\Speech Project.pdb
+C:\Users\Kyle\Desktop\Speech Project\Speech Project\Speech Project\obj\Release\Speech Project.csprojResolveAssemblyReference.cache
