@@ -48,9 +48,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(93, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 13);
+            this.label2.Size = new System.Drawing.Size(82, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Keyword: N.I.S.P.";
+            this.label2.Text = "Keyword: J.A.K.";
             // 
             // label1
             // 
