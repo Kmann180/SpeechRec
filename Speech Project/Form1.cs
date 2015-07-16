@@ -31,34 +31,53 @@ namespace Speech_Project
             PromptBuilder pBuilder = new PromptBuilder();
             SpeechRecognitionEngine sRecognize = new SpeechRecognitionEngine();
 
+            Choices NumbersCh = new Choices();
+            for (int i = 0; i < 9; i++)
+            {
+                NumbersCh.Add(i.ToString());
+            }
+            Choices NumbersCh = new Choices();
+            for (int i = 0; i < 100; i++)
+            {
+                NumbersCh.Add(i.ToString());
+            }
+            Choices NumbersCh = new Choices();
+            for (int i = 0; i < 9; i++)
+            {
+                NumbersCh.Add(i.ToString());
+            }
 
-            Choices sList = new Choices();
-            sList.Add(new string[] { "Jack Hello" });
-            sList.Add(new string[] { "Jack Launch Chrome" });
-            sList.Add(new string[] { "Jack Go To My Facebook" });
-            sList.Add(new string[] { "Jack Launch Go" });
-            sList.Add(new string[] { "Jack Launch Rim World" });
-            sList.Add(new string[] { "Jack Launch Rust" });
-            sList.Add(new string[] { "Jack Launch Sins" });
-            sList.Add(new string[] { "Jack Launch K S P" });
-            sList.Add(new string[] { "Jack Launch Skype" });
-            sList.Add(new string[] { "Jack Launch Unity" });
-            sList.Add(new string[] { "Jack Wake Up" });
-            sList.Add(new string[] { "That will be all for now" });
-            sList.Add(new string[] { "Jack Close Window" });
-            sList.Add(new string[] { "Jack Save Progress" });
-            sList.Add(new string[] { "Alt Tab" });
-            sList.Add(new string[] { "Jack Tell A Joke" });
-            sList.Add(new string[] { "That Was A Good One Jack" });
-            sList.Add(new string[] { "Jack You Are Funny" });
-            sList.Add(new string[] { "Jack You're A Little Bitch" });
-            sList.Add(new string[] { "Jack Lock" });
-            sList.Add(new string[] { "Jack Exit" });
-            Grammar gr = new Grammar(new GrammarBuilder(sList));
+            Choices OperatorCh = new Choices();
+            Grammar MathGr = new Grammar(new GrammarBuilder(NumbersCh));
+            
+
+            Choices MainCh = new Choices();
+            MainCh.Add(new string[] { "Jack Hello" });
+            MainCh.Add(new string[] { "Jack Launch Chrome" });
+            MainCh.Add(new string[] { "Jack Go To My Facebook" });
+            MainCh.Add(new string[] { "Jack Launch Go" });
+            MainCh.Add(new string[] { "Jack Launch Rim World" });
+            MainCh.Add(new string[] { "Jack Launch Rust" });
+            MainCh.Add(new string[] { "Jack Launch Sins" });
+            MainCh.Add(new string[] { "Jack Launch K S P" });
+            MainCh.Add(new string[] { "Jack Launch Skype" });
+            MainCh.Add(new string[] { "Jack Launch Unity" });
+            MainCh.Add(new string[] { "Jack Wake Up" });
+            MainCh.Add(new string[] { "That will be all for now" });
+            MainCh.Add(new string[] { "Jack Close Window" });
+            MainCh.Add(new string[] { "Jack Save Progress" });
+            MainCh.Add(new string[] { "Alt Tab" });
+            MainCh.Add(new string[] { "Jack Tell A Joke" });
+            MainCh.Add(new string[] { "That Was A Good One Jack" });
+            MainCh.Add(new string[] { "Jack You Are Funny" });
+            MainCh.Add(new string[] { "Jack Lock" });
+            MainCh.Add(new string[] { "Jack Exit" });
+            Grammar MainGr = new Grammar(new GrammarBuilder(MainCh));
             try
             {
                 sRecognize.RequestRecognizerUpdate();
-                sRecognize.LoadGrammar(gr);
+                sRecognize.LoadGrammar(MainGr);
+                sRecognize.LoadGrammar(MathGr);
                 sRecognize.SpeechRecognized += sRecognize_SpeechRecognized;
                 sRecognize.SetInputToDefaultAudioDevice();
                 sRecognize.RecognizeAsync(RecognizeMode.Multiple);
@@ -99,6 +118,13 @@ namespace Speech_Project
                 {
                     // Speak a string.
                     synth.Speak("Hello sir, how are you doing, I am Jak Version 1.0");
+                    AllBoolFalse();
+                } 
+                if (e.Result.Text == "1")
+                {
+                    int MyName = 1;
+                    // Speak a string.
+                    synth.Speak(MyName.ToString());
                     AllBoolFalse();
                 }
                 if (e.Result.Text == "Jack Launch Chrome")
@@ -207,21 +233,15 @@ namespace Speech_Project
                     synth.Speak("Jack shutting down, Good Bye sir");
                     Environment.Exit(0);
                 }
-                if (e.Result.Text == "Jack You're A Little Bitch")
-                {
-                    // Speak a string.
-                    synth.Speak("Fuck Off asshole");
-                    Environment.Exit(0);
-                }
 
 
 
                 if (JokeMade == true)
                 {
-                    if (e.Result.Text == "Jack You Are Funnyr")
+                    if (e.Result.Text == "Jack You Are Funny")
                     {
                         // Speak a string.
-                        synth.Speak("Did you want to hear another?");
+                        synth.Speak("Well Duh You Made Me");
                         AllBoolFalse();
                     }
                     if (e.Result.Text == "That Was A Good One Jack")
