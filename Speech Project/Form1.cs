@@ -18,6 +18,13 @@ namespace Speech_Project
     public partial class Form1 : Form
     {
         bool JokeMade;
+        bool EnterNumber1;
+        int Number1 = -1;
+        bool EnterNumber2;
+        int Number2 = -1;
+        bool EnterOperator; 
+        float MathAnswer;
+
         public Form1()
         {
             InitializeComponent();
@@ -32,21 +39,20 @@ namespace Speech_Project
             SpeechRecognitionEngine sRecognize = new SpeechRecognitionEngine();
 
             Choices NumbersCh = new Choices();
-            for (int i = 0; i < 9; i++)
+            for (int i = -999; i < 1000; i++)
             {
                 NumbersCh.Add(i.ToString());
             }
-            Choices NumbersCh = new Choices();
-            for (int i = 0; i < 100; i++)
-            {
-                NumbersCh.Add(i.ToString());
-            }
-            Choices NumbersCh = new Choices();
-            for (int i = 0; i < 9; i++)
-            {
-                NumbersCh.Add(i.ToString());
-            }
-
+            NumbersCh.Add("Times");
+            NumbersCh.Add("Multiply");
+            NumbersCh.Add("Divided");
+            NumbersCh.Add("Divide");
+            NumbersCh.Add("Plus");
+            NumbersCh.Add("Minus");
+            NumbersCh.Add("Add");
+            NumbersCh.Add("Subtract");
+            NumbersCh.Add("Power");
+            NumbersCh.Add("Left Over");
             Choices OperatorCh = new Choices();
             Grammar MathGr = new Grammar(new GrammarBuilder(NumbersCh));
             
@@ -70,6 +76,9 @@ namespace Speech_Project
             MainCh.Add(new string[] { "Jack Tell A Joke" });
             MainCh.Add(new string[] { "That Was A Good One Jack" });
             MainCh.Add(new string[] { "Jack You Are Funny" });
+            MainCh.Add(new string[] { "Enter My Number" });
+            MainCh.Add(new string[] { "What Are My Numbers?" });
+            MainCh.Add(new string[] { "What Is My Answer?" });
             MainCh.Add(new string[] { "Jack Lock" });
             MainCh.Add(new string[] { "Jack Exit" });
             Grammar MainGr = new Grammar(new GrammarBuilder(MainCh));
@@ -91,7 +100,6 @@ namespace Speech_Project
         }
         private void sRecognize_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-
             // Initialize a new instance of the SpeechSynthesizer.
             SpeechSynthesizer synth = new SpeechSynthesizer();
 
@@ -117,16 +125,104 @@ namespace Speech_Project
                 if (e.Result.Text == "Jack Hello")
                 {
                     // Speak a string.
-                    synth.Speak("Hello sir, how are you doing, I am Jak Version 1.0");
-                    AllBoolFalse();
-                } 
-                if (e.Result.Text == "1")
-                {
-                    int MyName = 1;
-                    // Speak a string.
-                    synth.Speak(MyName.ToString());
+                    synth.Speak("Hello you are running Version 1.0 of Jak");
                     AllBoolFalse();
                 }
+                if (e.Result.Text == "Jack Exit")
+                {
+                    // Speak a string.
+                    synth.Speak("Jack shutting down");
+                    Environment.Exit(0);
+                }
+//Math (-999 to 999)
+                if (e.Result.Text == "Enter My Number")
+                {
+                    EnterNumber1 = true;
+                   // Speak a string.
+                    synth.Speak("Enter your number now");
+                   // AllBoolFalse();
+                }
+                if (e.Result.Text == "What Are My Numbers?")
+                {
+                    synth.Speak("Your first number is " + Number1.ToString() + ", your second number is " + Number2.ToString());
+                }
+                if (e.Result.Text == "What Is My Answer?")
+                {
+                    synth.Speak(MathAnswer.ToString());
+                }
+                if (EnterNumber2 == true)
+                {
+                    for (int i = -999; i < 1000; i++)
+                    {
+                        if (e.Result.Text == i.ToString())
+                        {
+                            Number2 = i;
+                            EnterNumber2 = false;
+                            EnterOperator = true;
+                            synth.Speak(i.ToString());
+                            synth.Speak("is your second number. Enter your operator now.");
+                        }
+                    }
+                }
+                if (EnterNumber1 == true)
+                {
+                    for (int i = -999; i < 1000; i++)
+                    {
+                        if (e.Result.Text == i.ToString())
+                        {
+                            Number1 = i;
+                            EnterNumber1 = false;
+                            synth.Speak(i.ToString());
+                            synth.Speak("is your first number. Enter your second number now.");
+                            EnterNumber2 = true;
+                        }
+                    }
+                }
+                if (EnterOperator == true)
+                {
+                    if (e.Result.Text == "Add" || e.Result.Text == "Plus")
+                    {
+                        MathAnswer = Number1 + Number2;
+                        synth.Speak("Your answer is " + MathAnswer);
+                        EnterOperator = false;
+                    }
+                    if (e.Result.Text == "Subtract" || e.Result.Text == "Minus")
+                    {
+                        MathAnswer = Number1 - Number2;
+                        synth.Speak("Your answer is " + MathAnswer);
+                        EnterOperator = false;
+                    }
+                    if (e.Result.Text == "Multiply" || e.Result.Text == "Times")
+                    {
+                        MathAnswer = Number1 * Number2;
+                        synth.Speak("Your answer is " + MathAnswer);
+                        EnterOperator = false;
+                    }
+                    if (e.Result.Text == "Divide" || e.Result.Text == "Divided")
+                    {
+                        MathAnswer = Number1 / Number2;
+                        synth.Speak("Your answer is " + MathAnswer);
+                        EnterOperator = false;
+                    }
+                    if (e.Result.Text == "Leftover")
+                    {
+                        MathAnswer = Number1 % Number2;
+                        synth.Speak("Your answer is " + MathAnswer);
+                        EnterOperator = false;
+                    }
+                    if (e.Result.Text == "Power")
+                    {
+                        MathAnswer = Number1;
+                        for (int i = 0; i < Number2; i++)
+                        {
+                            MathAnswer *= Number1;
+                        }
+                        synth.Speak("Your answer is " + MathAnswer);
+                        EnterOperator = false;
+                    }
+                    
+                }
+//Launching Stuff
                 if (e.Result.Text == "Jack Launch Chrome")
                 {
 
@@ -195,6 +291,7 @@ namespace Speech_Project
                     synth.Speak("Launching Unity");
                     AllBoolFalse();
                 }
+//Controlling Windows
                 if (e.Result.Text == "Jack Save Progress")
                 {
                     Save();
@@ -215,27 +312,20 @@ namespace Speech_Project
                     synth.Speak("Closing Application");
                     AllBoolFalse();
                 }
-                if (e.Result.Text == "Jack Tell A Joke")
-                {
-                    // Speak a string.
-                    synth.Speak("Your Face, Ha Ha Ha Ha Ha Ha Ha Ha Ha ");
-                    AllBoolFalse(JokeMade);
-                }
                 if (e.Result.Text == "Jack Lock")
                 {
                     // Speak a string.
                     LockComputer();
                     AllBoolFalse();
                 }
-                if (e.Result.Text == "Jack Exit")
+                
+//JAK is funny
+                if (e.Result.Text == "Jack Tell A Joke")
                 {
                     // Speak a string.
-                    synth.Speak("Jack shutting down, Good Bye sir");
-                    Environment.Exit(0);
+                    synth.Speak("Your Face, Ha Ha Ha Ha Ha Ha Ha Ha Ha ");
+                    AllBoolFalse(JokeMade);
                 }
-
-
-
                 if (JokeMade == true)
                 {
                     if (e.Result.Text == "Jack You Are Funny")
@@ -251,6 +341,7 @@ namespace Speech_Project
                         AllBoolFalse();
                     }
                 }
+
             }
         }
 
@@ -310,7 +401,6 @@ namespace Speech_Project
         {
             System.Diagnostics.Process.Start(@"C:\WINDOWS\system32\rundll32.exe", "user32.dll,LockWorkStation");
         }
-
         private void AllBoolFalse(bool exception)
         {
             JokeMade = false;
